@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	                    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 위에꺼 xml안에 자바 객체 설정 대부분의 프로젝트에 들어가는 동일한 내용이라서 붙여 넣기를 해주었다. -->
+
+	<!-- Creating shared instance of singleton bean 't1' -->
+	<bean id="t1" class="com.demo.beans.TestBean" />
+
+</beans>

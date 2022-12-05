@@ -1,0 +1,30 @@
+package com.demo.main;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.demo.beans.TestBean;
+
+public class mainClass {
+
+	public static void main(String[] args) {
+// beans.xml파일을 로딩한다.(필요한 객체들을 자동으로 생성함)
+		
+//		IoC : 객체를 자동으로 스프링 프레임워크에서 하기때문에 제어역전(Inversion of Control)이라는 용어로 쓰인다.
+		// IoC 종류 : BeanFactory, ApplicationContext		
+		
+//		싱글턴타입 : 딱 한 번 만 생성함 beans.xml에서 ("com/demo/config/beans.xml"); id="t1"이라고 해줬던 게 생성됨
+//		불러올 때 생성했던 것을 가져옴
+		ClassPathXmlApplicationContext ctx =
+				new ClassPathXmlApplicationContext("com/demo/config/beans.xml");
+		
+		TestBean t1 = ctx.getBean("t1", TestBean.class);
+		System.out.printf("t1  : %s\n",t1);
+		
+		TestBean t2 = ctx.getBean("t1", TestBean.class);
+		System.out.printf("t2  : %s\n",t2);
+	
+	ctx.close();
+	
+	}
+	
+}
