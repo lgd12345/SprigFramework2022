@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	                    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 위에꺼 xml안에 자바 객체 설정 대부분의 프로젝트에 들어가는 동일한 내용이라서 붙여 넣기를 해주었다. -->
+
+	<!-- id : 객체 가져올 때 쓰이는 이름 지정 -->
+	<!-- class: 객체를 생성하기 위해 사용할 클래스 지정 -->
+	<!-- IoC 컨테이너가 종료될 때 객체가 소멸한다. -->
+	
+	<bean id="obj1" class="com.demo.beans.TestBean1">
+	<property name="data1" ref="data_bean1"/>
+	<property name="data2" ref="data_bean1"/>
+	</bean>
+	<!-- prototype 만들 때마다 객체 생성 -->
+	<bean id='data_bean1' class='com.demo.beans.DataBean1' scope='prototype'/>
+	
+	
+<!-- + autowire="byName" 이름으로 자동주입 -->
+	<bean id='obj2' class='com.demo.beans.TestBean1' autowire="byName"/>
+	
+	<!-- property id="data1" 이것과 정의된 이름이 같은 것을 찾는다. -->
+	<bean id='data1' class='com.demo.beans.DataBean1'/>
+	<bean id='data2' class='com.demo.beans.DataBean1'/>
+	
+
+	<!-- DataBean2 타입의 빈 객체 정의 해줌 --> <!-- 빼버리면 null로 뜬다. -->
+	<bean class='com.demo.beans.DataBean2'/>
+	
+<!-- + 타입을 통한 주입 타입이 하나 밖에 없음 클래스만 적어줌 -->
+<!-- 동일한 타입의 빈이 2개 이상 정의 되어 있으면 오류 발생 -->
+	<bean id='obj3' class='com.demo.beans.TestBean2' autowire="byType"/>
+	
+<!-- + 생성자를 통한 주입 autowire="constructor" 생성자 매개 변수 타입과 빈 타입 일치할 경우 주입 -->
+<!-- 동일한 타입의 빈이 2개 이상 정의 되어 있으면 오류 발생 -->
+	<bean id='obj4' class='com.demo.beans.TestBean2' autowire="constructor"/>
+	
+<!--이름으로 찾아서 생성자 주입하면 객체를 필드변수당 객체를 만들 수 있는데 
+	타입과 생성자방식은 필드변수가 2개라도 객체 하나만 만들어짐-->
+	
+
+</beans>

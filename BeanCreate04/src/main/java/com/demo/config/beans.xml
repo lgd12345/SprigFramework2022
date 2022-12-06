@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	                    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 위에꺼 xml안에 자바 객체 설정 대부분의 프로젝트에 들어가는 동일한 내용이라서 붙여 넣기를 해주었다. -->
+
+	<!-- id : 객체 가져올 때 쓰이는 이름 지정 -->
+	<!-- class: 객체를 생성하기 위해 사용할 클래스 지정 -->
+	<!-- IoC 컨테이너가 종료될 때 객체가 소멸한다. -->
+
+	<!-- xml을 로딩할 때 자동으로 객체가 생성된다. -->
+	<!-- 현재까지의 학습 진도상 id 속성이 없다면 객체의 주소값을 받아서 사용할 수 없다. -->
+	<!-- <bean class='com.demo.beans.TestBean'/> -->
+	<bean id="test0" class='com.demo.beans.TestBean'/>
+	
+	<!-- xml을 로딩할 때 자동으로 객체가 생성된다. -->
+	<!-- id 속성에 이름을 부여하면 getBean 메서드를 통해 객체의 주소값을 받아 사용할 수 있다. -->
+	<!-- 생성된 객체는 더이상 생성되지 않는다. Singleton -->
+	<bean id='test1' class='com.demo.beans.TestBean'/>
+	
+	<!-- lazy-init : true - xml을 로딩할 때 객체가 생성되지 않는다.(생략하면 false) -->
+	<!-- getBean 메서드를 호출할 때 객체가 생성되며 singleton이기 때문에 객체는 하나만 생성된다. -->
+	<bean id='test2' class='com.demo.beans.TestBean' lazy-init="true"/>
+	
+	<!-- scope : prototype - xml을 로딩할 때 객체가 생성되지 않는다. -->
+	<!-- getBean 메서드를 호출할 때 마다 새로운 객체를 생성해서 반환한다. -->
+	<!-- scope='prototype', scope='singleton' -->
+	<bean id='test3' class='com.demo.beans.TestBean' scope='prototype'/>
+
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	                    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 위에꺼 xml안에 자바 객체 설정 대부분의 프로젝트에 들어가는 동일한 내용이라서 붙여 넣기를 해주었다. -->
+
+	<!-- id : 객체 가져올 때 쓰이는 이름 지정 -->
+	<!-- class: 객체를 생성하기 위해 사용할 클래스 지정 -->
+	<!-- IoC 컨테이너가 종료될 때 객체가 소멸한다. -->
+	
+	
+	<!-- lazy-init="true"메서드 사용시 객체 생성 -->
+	<!-- 객체 생성시 가장 먼저 생성자 호출 -->
+	<!-- init-method : 생성자 호출 뒤 자동으로 호출됨 -->
+	<bean id="t1" class="com.demo.beans.TestBean1" lazy-init="true"
+		init-method="bean1_init"></bean>
+
+</beans>
