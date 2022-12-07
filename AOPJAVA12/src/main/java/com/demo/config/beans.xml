@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	                    http://www.springframework.org/schema/beans/spring-beans.xsd
+	                    http://www.springframework.org/schema/context
+	                    http://www.springframework.org/schema/context/spring-context.xsd
+	                    http://www.springframework.org/schema/aop
+	                    http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 빈등록 한개 -->
+	<bean id='xml1' class='com.demo.beans.TestBean' />
+
+	<!-- Advisor클래스 객체( advisor1)를 빈 등록 -->
+	<bean id="advisor1" class="com.demo.advisor.AdvisorClass" />
+	
+	<!-- aop:config 로 설정 시작 -->
+	<aop:config>
+		<!-- </aop:aspect> 하나의 aop 설정으로 여러개 설정가능 -->
+		<aop:aspect ref='advisor1'>
+			<!-- expression 모든 패키지의 모든 클래스안에 있는 method1() 실행시 적용 -->
+			<!-- execution(* method1()) : 모든객체에 method1이 실행될때 -->
+			<aop:pointcut expression="execution(* method1())"
+				id="point1" />
+			<!-- aop:before는 method1() 실행전 aop:after는 method1() 실행후 -->
+			<!-- pointcut-ref="point1" 메소드원이 실행될때 적용된다. -->
+			<aop:before method="beforeMethod" pointcut-ref="point1" />
+			<aop:after method="afterMethod" pointcut-ref="point1" />
+			
+			<!-- aop:around -->
+			<aop:around method="aroundMethod" pointcut-ref="point1"/>
+			
+		</aop:aspect>
+	</aop:config>
+
+</beans>
